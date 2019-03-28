@@ -9,18 +9,14 @@
 class Game {
  public:
   ~Game();
+  Game();
 
   /**
    * \brief Execute the main loop in render window.
    */
   void Execute();
-  static std::shared_ptr<Game> GetInstance();
 
  private:
-  Game();
-
   bool executed_;
-  sf::RenderWindow window_;
-
-  static std::shared_ptr<Game> instance_;
+  std::shared_ptr<sf::RenderWindow> window_;
 };

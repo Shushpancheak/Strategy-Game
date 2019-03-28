@@ -1,11 +1,9 @@
 #pragma once
 #include <memory>
 #include <vector>
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <queue>
-
+#include <SFML/Graphics.hpp>
 #include "DrawVariant.hpp"
-#include <SFML/Graphics/Shape.hpp>
 
 /**
  * \brief Realizes pattern Composite: it draws itself and its children recursively.
@@ -31,12 +29,20 @@ class GraphicComponent {
   void Draw();
   std::vector<std::shared_ptr<GraphicComponent>> GetChildren() const;
   void AddChild(const std::shared_ptr<GraphicComponent>& child);
-  void SetXY(const float& x, const float& y);
-  void MoveXY(const float& x, const float& y);
-  float GetX();
-  float GetY();
-  float GetAbsX();
-  float GetAbsY();
+  void AddChild(std::shared_ptr<GraphicComponent>&& child);
+  void SetXy(const float& x, const float& y);
+  void MoveXy(const float& x, const float& y);
+  void SetScale(const float& scale);
+  void SetRotationDegrees(const float& deg);
+  float GetX() const;
+  float GetY() const;
+  float GetAbsX() const;
+  float GetAbsY() const;
+  float GetScale() const;
+  float GetRotationDegrees() const;
+  
+  // BFS.
+  static void DrawAll();
 
   DrawVariant draw_what;
   // Fly-weight implementation.
@@ -52,6 +58,10 @@ class GraphicComponent {
   // we'll have absolute x/y prior to the main screen graphic
   // component.
   float abs_x_, abs_y_;
+  // Rotation degrees.
+  float deg_;
+  // Scale.
+  float scale_;
 
   std::vector<std::shared_ptr<GraphicComponent>> children_;
   std::shared_ptr<GraphicComponent> parent_;
