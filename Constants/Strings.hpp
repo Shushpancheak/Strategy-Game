@@ -1,5 +1,5 @@
 #pragma once
 
-namespace strings {
+namespace constants {
   const auto ksWindowName = "Strategy Game"; 
 } // namespace strings

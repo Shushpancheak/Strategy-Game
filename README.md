@@ -3,7 +3,8 @@ A Programming Technology Project. Uses SFML. The main aim is to implement differ
 
 ## How to build
 This game uses [SFML](https://www.sfml-dev.org/tutorials/2.5/). So you should download it and somehow link the project to a library. Of course, you also should have cmake of the latest version installed.
-### Linux: ```bash
+### Linux:
+```bash
 sudo apt-get install build-essential
 sudo apt-get install git
 sudo apt-get install cmake
