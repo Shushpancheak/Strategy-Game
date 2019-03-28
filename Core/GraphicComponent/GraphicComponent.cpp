@@ -45,8 +45,6 @@ void GraphicComponent::Draw() {
     abs_y_ = y_;
   }
 
-  // @TODO Drawing itself only if absolute x/y don't exceed
-  // @TODO certain numbers.
   if (draw_what != kOnlyChildren) {
     if (base_sprite != nullptr) {
       // If it is transformable.

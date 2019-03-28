@@ -32,8 +32,6 @@ void Game::Execute() {
     nullptr
   );
 
-  screen.base_sprite = std::make_shared<sf::CircleShape>(100.f, 100);
-
   while (window_->isOpen()) {
     sf::Event event{};
 

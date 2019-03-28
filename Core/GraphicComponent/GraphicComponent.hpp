@@ -4,6 +4,7 @@
 #include <queue>
 #include <SFML/Graphics.hpp>
 #include "DrawVariant.hpp"
+#include "Component.hpp"
 
 /**
  * \brief Realizes pattern Composite: it draws itself and its children recursively.
@@ -18,7 +19,7 @@
  * 
  * Also uses fly-weight pattern for sprites.
  */
-class GraphicComponent {
+class GraphicComponent : public Component {
  public:
   explicit GraphicComponent(std::shared_ptr<sf::RenderWindow> window,
                             const std::shared_ptr<GraphicComponent>& parent,
