@@ -4,17 +4,17 @@
 
 #include "GraphicComponent.hpp"
 #include "Strings.hpp"
+#include "Constants.hpp"
 #include <iostream>
 
 // - - - - - - - - - - - - - - INITIALIZATION - - - - - - - - - - - - - -
 
 Game::Game()
   : executed_(false)
-  , window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(1280, 720), constants::ksWindowName)) {}
+  , window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(constants::kScreenWidth, constants::kScreenHeight),
+            constants::ksWindowName)) {}
 
-Game::~Game() {
-  std::cout << "Game D\n";
-}
+Game::~Game() = default;
 
 // - - - - - - - - - - - - - - MAIN LOOP - - - - - - - - - - - - - - - - -
 
@@ -29,7 +29,9 @@ void Game::Execute() {
   // inside screen will execute other Draws inside tree via BFS.
   auto screen = GraphicComponent(
     window_,
-    nullptr
+    sf::Sprite(),
+    nullptr,
+    kAll
   );
 
   while (window_->isOpen()) {

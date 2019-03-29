@@ -1,6 +1,6 @@
 #pragma once
 /**
- * Abstract component of entities.
+ * Abstract component for entities.
  */
 
 class Component {

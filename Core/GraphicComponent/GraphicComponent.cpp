@@ -3,17 +3,17 @@
 #include <iostream>
 
 GraphicComponent::GraphicComponent(std::shared_ptr<sf::RenderWindow> window,
-                                   const std::shared_ptr<GraphicComponent>& parent,
-                                   const DrawVariant draw_what,
-                                   std::shared_ptr<sf::Drawable> base_sprite) 
+                            sf::Sprite sprite,
+                            const std::shared_ptr<GraphicComponent>& parent,
+                            const DrawVariant draw_what)
   : draw_what(draw_what)
-  , base_sprite(std::move(base_sprite))
   , x_(0)
   , y_(0)
   , abs_x_(0)
   , abs_y_(0)
-  , scale_(1.f)
   , deg_(0)
+  , scale_(1.f)
+  , sprite_(std::move(sprite))
   , parent_(parent)
   , window_(std::move(window)) {
 
@@ -27,9 +27,7 @@ GraphicComponent::GraphicComponent(std::shared_ptr<sf::RenderWindow> window,
   }
 }
 
-GraphicComponent::~GraphicComponent() {
-  std::cout << "GraphicComponent D\n";
-}
+GraphicComponent::~GraphicComponent() = default;
 
 void GraphicComponent::Draw() {
   if (draw_what == kNothing) {
@@ -46,17 +44,10 @@ void GraphicComponent::Draw() {
   }
 
   if (draw_what != kOnlyChildren) {
-    if (base_sprite != nullptr) {
-      // If it is transformable.
-      auto base_sprite_t = std::dynamic_pointer_cast<sf::Transformable, sf::Drawable>(base_sprite);
-      if (base_sprite_t != nullptr) {
-        base_sprite_t->setPosition(abs_x_, abs_y_);
-        base_sprite_t->setRotation(deg_);
-        base_sprite_t->setScale(scale_, scale_);
-      }
-
-      window_->draw(*base_sprite);
-    }
+    sprite_.setPosition(abs_x_, abs_y_);
+    sprite_.setRotation(deg_);
+    sprite_.setScale(scale_, scale_);
+    window_->draw(sprite_);
   }
 
   if (draw_what != kOnlyThis) {

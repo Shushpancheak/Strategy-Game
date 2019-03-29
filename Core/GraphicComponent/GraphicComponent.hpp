@@ -17,14 +17,14 @@
  * So it is guaranteed that if a component has a greater depth in the tree than another,
  * then it will be drawn over another one.
  * 
- * Also uses fly-weight pattern for sprites.
+ * Also uses fly-weight design pattern for sprites.
  */
 class GraphicComponent : public Component {
  public:
   explicit GraphicComponent(std::shared_ptr<sf::RenderWindow> window,
+                            sf::Sprite sprite,
                             const std::shared_ptr<GraphicComponent>& parent,
-                            const DrawVariant draw_what = kAll,
-                            std::shared_ptr<sf::Drawable> base_sprite = nullptr);
+                            const DrawVariant draw_what = kAll);
   ~GraphicComponent();
 
   void Draw();
@@ -46,8 +46,6 @@ class GraphicComponent : public Component {
   static void DrawAll();
 
   DrawVariant draw_what;
-  // Fly-weight implementation.
-  std::shared_ptr<sf::Drawable> base_sprite;
   
  private:
   // Relative to parent's x/y.
@@ -63,6 +61,11 @@ class GraphicComponent : public Component {
   float deg_;
   // Scale.
   float scale_;
+
+  // Fly-weight implementation.
+  // it is a fly-weight structure because Texture (the most heavy item in structure)
+  // is used as const reference, so no copying.
+  sf::Sprite sprite_;
 
   std::vector<std::shared_ptr<GraphicComponent>> children_;
   std::shared_ptr<GraphicComponent> parent_;
