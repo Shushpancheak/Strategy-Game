@@ -1,6 +1,5 @@
 #include "GraphicComponent.hpp"
 #include <utility>
-#include <iostream>
 
 GraphicComponent::GraphicComponent(std::shared_ptr<sf::RenderWindow> window,
                             sf::Sprite sprite,

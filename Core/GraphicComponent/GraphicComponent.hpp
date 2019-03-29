@@ -19,7 +19,7 @@
  * 
  * Also uses fly-weight design pattern for sprites.
  */
-class GraphicComponent : public Component {
+class GraphicComponent /*: public Component*/ {
  public:
   explicit GraphicComponent(std::shared_ptr<sf::RenderWindow> window,
                             sf::Sprite sprite,

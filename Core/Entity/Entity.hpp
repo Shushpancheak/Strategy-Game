@@ -8,7 +8,7 @@
  */
 class Entity {
 public:
-  virtual ~Entity() = 0;
+  virtual ~Entity() = default;
   Entity(const float& x, const float& y);
    
 protected:
