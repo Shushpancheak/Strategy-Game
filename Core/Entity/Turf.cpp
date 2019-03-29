@@ -2,5 +2,5 @@
 
 Turf::Turf(const float& x, const float& y, const std::shared_ptr<GraphicComponent>& graphic_component)
   : Entity(x, y) {
-  components.push_back(graphic_component);
+  components_.push_back(graphic_component);
 }

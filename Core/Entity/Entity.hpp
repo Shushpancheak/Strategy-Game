@@ -14,5 +14,5 @@ public:
 protected:
   // Relative to the map.
   float x_, y_;
-  std::vector<std::shared_ptr<Component>> components;
+  std::vector<std::shared_ptr<Component>> components_;
 };

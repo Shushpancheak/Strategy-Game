@@ -5,7 +5,6 @@
 #include "GraphicComponent.hpp"
 #include "Strings.hpp"
 #include "Constants.hpp"
-#include <iostream>
 
 // - - - - - - - - - - - - - - INITIALIZATION - - - - - - - - - - - - - -
 
