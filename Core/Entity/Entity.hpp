@@ -9,10 +9,10 @@
 class Entity {
 public:
   virtual ~Entity();
-  Entity(const float& x, const float& y);
+  Entity(const float& x = 0, const float& y = 0);
    
 protected:
   // Relative to the map.
   float x_, y_;
-  std::vector<Component> components_;
+  std::vector<std::shared_ptr<Component>> components_;
 };

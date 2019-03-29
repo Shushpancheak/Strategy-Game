@@ -19,23 +19,23 @@
  * 
  * Also uses fly-weight design pattern for sprites.
  */
-class GraphicComponent : public Component {
+class GraphicComponent : public Component,
+                         std::enable_shared_from_this<GraphicComponent> {
  public:
-  GraphicComponent(std::shared_ptr<sf::RenderWindow> window = nullptr,
+  explicit GraphicComponent(std::shared_ptr<sf::RenderWindow> window = nullptr,
                             const std::shared_ptr<GraphicComponent>& parent = nullptr,
                             const sf::Texture& source_texture = sf::Texture(),
                             const size_t variants = 1,
                             const size_t animated_frames = 0,
-                            sf::Sprite sprite = sf::Sprite(),
                             const DrawVariant draw_what = kAll);
   ~GraphicComponent();
 
   void Draw();
-  std::vector<std::shared_ptr<GraphicComponent>> GetChildren() const;
-  void AddChild(const std::shared_ptr<GraphicComponent>& child);
-  void AddChild(std::shared_ptr<GraphicComponent>&& child);
+  std::vector<GraphicComponent*> GetChildren() const;
+  void AddChild(GraphicComponent* child);
   void SetXy(const float& x, const float& y);
   void MoveXy(const float& x, const float& y);
+  void MoveVec2(const sf::Vector2<float> vec);
   void SetScale(const float& scale);
   void SetRotationDegrees(const float& deg);
   float GetX() const;
@@ -44,9 +44,14 @@ class GraphicComponent : public Component {
   float GetAbsY() const;
   float GetScale() const;
   float GetRotationDegrees() const;
+  float GetGlobalScale();
+  void SetGlobalScale(const float& new_global_scale);
+  void ChangeGlobalScale(const float& change);
+  void SetGlobalScaleRecursively(const float& new_global_scale);
+  void ChangeGlobalScaleRecursively(const float& change);
 
   // BFS.
-  static void DrawAll();
+  static void DrawPushed();
 
   DrawVariant draw_what;
 
@@ -68,12 +73,8 @@ class GraphicComponent : public Component {
   // Rotation degrees.
   float deg_;
   // Scale.
-  float scale_;
-
-  // Fly-weight implementation.
-  // it is a fly-weight structure because Texture (the most heavy item in structure)
-  // is used as const reference, so no copying.
-  sf::Sprite sprite_;
+  float scale_; // Of this particular object
+  float global_scale_; // When scaling all map.
 
   // As for now, texture should be an image consisting of constants::.x. rectangles.
   // ++== sprites heading south.
@@ -86,12 +87,17 @@ class GraphicComponent : public Component {
   //|__|__|__|__| < (If animated_frames != 0) Second variant -- 2nd frame.
   //|__|__|__|__| < ............
   const sf::Texture& source_texture_;
+
+  // Fly-weight implementation.
+  // it is a fly-weight structure because Texture (the most heavy item in structure)
+  // is used as const reference, so no copying.
+  sf::Sprite sprite_;
   
   float animated_fps_;
 
-  std::vector<std::shared_ptr<GraphicComponent>> children_;
+  std::vector<GraphicComponent*> children_;
   std::shared_ptr<GraphicComponent> parent_;
   std::shared_ptr<sf::RenderWindow> window_;
 
-  static std::queue<std::shared_ptr<GraphicComponent>> main_queue_;
+  static std::queue<GraphicComponent*> main_queue_;
 };

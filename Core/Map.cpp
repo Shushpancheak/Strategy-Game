@@ -1,9 +1,10 @@
 #include "Map.hpp"
+#include "Constants.hpp"
+#include "Entity/Turfs/Ground.hpp"
 
-Map::Map(const sf::Texture& texture,
+Map::Map(
   const std::shared_ptr<GraphicComponent>& parent,
   const std::shared_ptr<sf::RenderWindow>& window,
-  const size_t variants,
   const size_t tiles_width,
   const size_t tiles_height) {
   
@@ -13,11 +14,20 @@ Map::Map(const sf::Texture& texture,
     tiles_[i].resize(tiles_width);
   }
 
+  map_graphic_component_ = std::make_shared<GraphicComponent>(window, parent);
+
   for (size_t i = 0; i < tiles_height; ++i) {
     for (size_t j = 0; j < tiles_width; ++j) {
-      tiles_[i][j] = std::make_shared<GraphicComponent>(window, parent, texture, variants);
+      tiles_[i][j] = std::make_shared<Ground>(
+        constants::kSS * static_cast<float>(j),
+        constants::kSS * static_cast<float>(i),
+        window, map_graphic_component_
+      );
     }
   }
 }
 
 Map::~Map() = default;
+std::shared_ptr<GraphicComponent> Map::GetMapGraphicComponent() const {
+  return map_graphic_component_;
+}
