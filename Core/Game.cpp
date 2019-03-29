@@ -9,9 +9,13 @@
 // - - - - - - - - - - - - - - INITIALIZATION - - - - - - - - - - - - - -
 
 Game::Game()
-  : executed_(false)
-  , window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(constants::kScreenWidth, constants::kScreenHeight),
-            constants::ksWindowName)) {}
+  : window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(constants::kScreenWidth, 
+    constants::kScreenHeight), constants::ksWindowName))
+  , executed_(false)
+  , screen_(window_, nullptr)
+  , entities_(0) {
+  
+}
 
 Game::~Game() = default;
 
@@ -22,16 +26,6 @@ void Game::Execute() {
     return;
   }
   executed_ = true;
-
-  // Main screen -- graphic component that holds all other.
-  // GraphicComponent - composite structure, so executing Draw()
-  // inside screen will execute other Draws inside tree via BFS.
-  auto screen = GraphicComponent(
-    window_,
-    sf::Sprite(),
-    nullptr,
-    kAll
-  );
 
   while (window_->isOpen()) {
     sf::Event event{};
@@ -45,7 +39,7 @@ void Game::Execute() {
 
     window_->clear();
 
-    screen.Draw();
+    screen_.Draw();
     GraphicComponent::DrawAll();
 
     window_->display();

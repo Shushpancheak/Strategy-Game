@@ -4,7 +4,7 @@ project(Strategy-Game)
 file(GLOB_RECURSE MAIN_SOURCES	*.cpp *.h *.hpp)
 message("MESSAGE: " ${MAIN_SOURCES})
 
-set(SFML_DIR "F:/!Edu/Programming_Technology/SFML2/SFML-2.5.1-windows-vc15-64-bit (1)/SFML-2.5.1/lib/cmake/SFML")
+set(SFML_DIR "D:/!Edu/SFML-2.5.1/lib/cmake/SFML")
 set(SFML_STATIC_LIBRARIES TRUE)
 find_package(SFML 2.5 COMPONENTS graphics audio window REQUIRED)
 

@@ -1,11 +1,16 @@
 #include "GraphicComponent.hpp"
 #include <utility>
 
-GraphicComponent::GraphicComponent(std::shared_ptr<sf::RenderWindow> window,
-                            sf::Sprite sprite,
+GraphicComponent::GraphicComponent(std::shared_ptr<sf::RenderWindow> window,          
                             const std::shared_ptr<GraphicComponent>& parent,
+                            const sf::Texture& source_texture,
+                            const size_t variants,
+                            const size_t animated_frames,
+                            sf::Sprite sprite,
                             const DrawVariant draw_what)
   : draw_what(draw_what)
+  , variants(variants)
+  , animated_frames(animated_frames)
   , x_(0)
   , y_(0)
   , abs_x_(0)
@@ -13,9 +18,10 @@ GraphicComponent::GraphicComponent(std::shared_ptr<sf::RenderWindow> window,
   , deg_(0)
   , scale_(1.f)
   , sprite_(std::move(sprite))
+  , source_texture_(source_texture)
+  , animated_fps_(5.f)
   , parent_(parent)
   , window_(std::move(window)) {
-
   if (parent == nullptr) {
     // Then it should be the main screen. Or else it won't be
     // ever drawn.

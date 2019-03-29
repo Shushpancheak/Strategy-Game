@@ -19,11 +19,14 @@
  * 
  * Also uses fly-weight design pattern for sprites.
  */
-class GraphicComponent /*: public Component*/ {
+class GraphicComponent : public Component {
  public:
-  explicit GraphicComponent(std::shared_ptr<sf::RenderWindow> window,
-                            sf::Sprite sprite,
-                            const std::shared_ptr<GraphicComponent>& parent,
+  GraphicComponent(std::shared_ptr<sf::RenderWindow> window = nullptr,
+                            const std::shared_ptr<GraphicComponent>& parent = nullptr,
+                            const sf::Texture& source_texture = sf::Texture(),
+                            const size_t variants = 1,
+                            const size_t animated_frames = 0,
+                            sf::Sprite sprite = sf::Sprite(),
                             const DrawVariant draw_what = kAll);
   ~GraphicComponent();
 
@@ -41,11 +44,16 @@ class GraphicComponent /*: public Component*/ {
   float GetAbsY() const;
   float GetScale() const;
   float GetRotationDegrees() const;
-  
+
   // BFS.
   static void DrawAll();
 
   DrawVariant draw_what;
+
+  // Sprite-related:
+  size_t variants;
+  // If animated, it must be != 0
+  size_t animated_frames;
   
  private:
   // Relative to parent's x/y.
@@ -66,6 +74,20 @@ class GraphicComponent /*: public Component*/ {
   // it is a fly-weight structure because Texture (the most heavy item in structure)
   // is used as const reference, so no copying.
   sf::Sprite sprite_;
+
+  // As for now, texture should be an image consisting of constants::.x. rectangles.
+  // ++== sprites heading south.
+  // || ++== north.............. !!! For now, using only south...
+  // \/ \/
+  // __ __ __ __
+  //|__|__|__|__| < First variant. Variants are treated in different ways: they can be random or specific.
+  //|__|__|__|__| < Second variant.
+  //|__|__|__|__| < (If animated_frames != 0) First variant -- 2nd frame.
+  //|__|__|__|__| < (If animated_frames != 0) Second variant -- 2nd frame.
+  //|__|__|__|__| < ............
+  const sf::Texture& source_texture_;
+  
+  float animated_fps_;
 
   std::vector<std::shared_ptr<GraphicComponent>> children_;
   std::shared_ptr<GraphicComponent> parent_;
