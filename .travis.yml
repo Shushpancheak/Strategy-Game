@@ -8,12 +8,7 @@ before_install:
   - sudo apt-get install -f
   - sudo dpkg --configure -a
   - sudo apt-get install -f
-
-addons:
-  apt:
-    update: true
-    packages:
-      - libsfml-dev 2.5
+  - sudo apt-get install libsfml-dev -y
 
 script:
   - mkdir build
