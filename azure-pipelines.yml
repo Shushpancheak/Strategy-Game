@@ -9,7 +9,14 @@ container: ubuntu:19.10
 
 steps:
 - script: |
-    docker exec -u 0
+    /tmp/docker exec -t -u 0 ci-container \
+    sh -c "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confold" -y install sudo"
+  displayName: Set up sudo
+
+- script: |
+    sudo apt-get install cmake
+    sudo apt-get install make
+    sudo apt-get install gcc
     sudo apt-get install libsfml-dev
     mkdir build
     cd build
