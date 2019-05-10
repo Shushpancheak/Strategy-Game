@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics/Texture.hpp>
 #include <unordered_map>
+#include <memory>
 
 /**
  * \brief A singleton resource manager which loads textures, sounds, other stuff...

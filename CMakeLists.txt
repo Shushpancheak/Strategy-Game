@@ -4,7 +4,7 @@ project(Strategy-Game)
 file(GLOB_RECURSE MAIN_SOURCES	*.cpp *.h *.hpp)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-if (TRUE)
+if (WIN32)
 	set(SFML_DIR "F:/!Edu/Programming_Technology/SFML2/SFML-2.5.1-windows-vc15-64-bit (1)/SFML-2.5.1/lib/cmake/SFML")
 	set(SFML_STATIC_LIBRARIES TRUE)
 endif()
