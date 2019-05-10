@@ -9,7 +9,6 @@ addons:
       - libsfml-dev
 
 script:
-  - sudo apt-get install libsfml-dev
   - mkdir build
   - cd build
   - cmake ..
