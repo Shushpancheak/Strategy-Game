@@ -3,6 +3,12 @@ compiler:
 - gcc
 os:
 - linux
+
+before_install:
+  - sudo apt-get install -f
+  - sudo dpkg --configure -a
+  - sudo apt-get install -f
+
 addons:
   apt:
     update: true
