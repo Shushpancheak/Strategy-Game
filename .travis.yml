@@ -4,8 +4,8 @@ dist: xenial
 
 before_install:
   - sudo apt-get update -y
-  - sudo apt-get install libsfml-dev=2.5 -y
-#wtf
+  - sudo apt-get install libsfml-dev=2.5.1+dfsg-1 -y
+
 script:
   - mkdir build
   - cd build
