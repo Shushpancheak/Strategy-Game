@@ -5,6 +5,7 @@ os:
 - linux
 addons:
   apt:
+    update: true
     packages:
       - libsfml-dev 2.5
 
