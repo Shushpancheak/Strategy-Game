@@ -14,7 +14,7 @@
 
 Game::Game()
   : window_(std::make_shared<sf::RenderWindow>(
-              sf::VideoMode(constants::kScreenWidth, 
+              sf::VideoMode(constants::kScreenWidth,
               constants::kScreenHeight),
               constants::ksWindowName,
               sf::Style::Fullscreen
