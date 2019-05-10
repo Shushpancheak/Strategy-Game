@@ -17,6 +17,7 @@ addons:
       - libogg-dev
       - libvorbis-dev
       - libxcb-image0-dev
+      - systemd-devel
       - wget
 
 script:
