@@ -1,12 +1,9 @@
 #pragma once
-#include "Gui.hpp"
 
-class Player : public std::enable_shared_from_this<Player> {
+class Player {
 public:
-  Player();
-  ~Player();
-
-  std::shared_ptr<Gui> gui;
+  Player() = default;
+  ~Player() = default;
 
 private:
 
