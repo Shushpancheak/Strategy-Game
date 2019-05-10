@@ -20,9 +20,10 @@ addons:
       - wget
 
 script:
-  - wget https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip
-  - mkdir SFML
-  - unzip SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip -d SFML
+  #- wget https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip
+  #- mkdir SFML
+  #- unzip SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip -d SFML
+  - sudo apt-get *libsfml*
   - mkdir build
   - cd build
   - cmake ..
