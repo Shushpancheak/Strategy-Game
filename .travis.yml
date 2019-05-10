@@ -1,8 +1,7 @@
 language: cpp
-compiler:
-- gcc
-os:
-- linux
+compiler: gcc
+os: linux
+distr: xenial
 
 before_install:
   - sudo apt-get install -f
