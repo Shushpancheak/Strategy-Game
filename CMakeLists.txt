@@ -11,7 +11,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 #set(SFML_DIR "F:/!Edu/Programming_Technology/SFML2/SFML-2.5.1/lib/cmake/SFML")
 #set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/")
 set(SFML_STATIC_LIBRARIES TRUE)
-find_package(SFML 2 COMPONENTS graphics audio window REQUIRED)
+find_package(SFML 2.5 COMPONENTS graphics audio window REQUIRED)
 
 include_directories("Core" "Constants" "Core/GraphicComponent" "Core/Managers")
 

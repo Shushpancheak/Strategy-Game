@@ -6,26 +6,9 @@ os:
 addons:
   apt:
     packages:
-      - libsfml-dev
-      - libfreetype6-dev
-      - libx11-dev
-      - libxrandr-dev
-      - libgl1-mesa-dev
-      - libudev-dev
-      - libopenal-dev
-      - libflac-dev
-      - libogg-dev
-      - libvorbis-dev
-      - libxcb-image0-dev
+      - libsfml-dev 2.5
 
 script:
-  #- wget https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip
-  #- mkdir SFML
-  #- unzip SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip -d SFML
-  - sudo apt-get upgrade
-  - sudo apt-get update
-  - sudo apt-get install *libsfml*
-  - sudo apt-get update
   - mkdir build
   - cd build
   - cmake ..
