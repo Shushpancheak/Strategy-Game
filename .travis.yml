@@ -16,6 +16,7 @@ addons:
       - libflac-dev
       - libogg-dev
       - libvorbis-dev
+      - libxcb-image0-dev
 
 script:
   - mkdir build
