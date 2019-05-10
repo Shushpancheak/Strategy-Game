@@ -6,7 +6,7 @@ before_install:
   - sudo apt-get install -f
   - sudo dpkg --configure -a
   - sudo apt-get install -f
-  - sudo apt-get install libsfml-dev 2.5 -y
+  - sudo apt-get install libsfml-dev -y
 
 script:
   - mkdir build
