@@ -17,7 +17,6 @@ addons:
       - libogg-dev
       - libvorbis-dev
       - libxcb-image0-dev
-      - wget
 
 script:
   #- wget https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip
@@ -25,7 +24,7 @@ script:
   #- unzip SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip -d SFML
   - sudo apt-get upgrade
   - sudo apt-get update
-  - sudo apt-get install *libsfml*
+  - sudo apt-get install *sfml*
   - mkdir build
   - cd build
   - cmake ..
