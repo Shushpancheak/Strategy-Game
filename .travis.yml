@@ -17,8 +17,12 @@ addons:
       - libogg-dev
       - libvorbis-dev
       - libxcb-image0-dev
+      - wget
 
 script:
+  - wget https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-32-bit.zip
+  - mkdir SFML
+  - unzip SFML-2.5.1-windows-gcc-7.3.0-mingw-32-bit.zip -d SFML
   - mkdir build
   - cd build
   - cmake ..
