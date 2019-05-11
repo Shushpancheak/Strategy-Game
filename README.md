@@ -5,9 +5,8 @@ A Programming Technology Project. Uses SFML. The main aim is to implement differ
 This game uses [SFML](https://www.sfml-dev.org/tutorials/2.5/). So you should download it and somehow link the project to a library. Of course, you also should have cmake of the latest version installed.
 ### Linux:
 ```bash
-sudo apt-get install build-essential
-sudo apt-get install git
-sudo apt-get install cmake
+# Main prerequisite is having apt servers with SFML v. 2.5+, or else it won't build.
+sudo apt-get install libsfml-dev:2.5
 
 # Get the code and create the makefile 
 git clone https://github.com/Shushpancheak/Strategy-Game --recursive
