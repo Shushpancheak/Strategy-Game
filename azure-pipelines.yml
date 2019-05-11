@@ -1,6 +1,17 @@
+# Email notification configured in Azure Pipelines settings.
+# using folowing guide: https://docs.microsoft.com/en-us/azure/devops/notifications/howto-manage-team-notifications?view=azure-devops&tabs=new-nav&viewFallbackFrom=vsts
+
 trigger:
-- dev
-- master
+  branches:
+    include:
+    - dev
+    - master
+
+  paths:
+    exclude:
+    - README.md
+    - docs/*
+
 
 pool:
   vmImage: 'ubuntu-latest'
