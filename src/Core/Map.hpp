@@ -17,8 +17,11 @@ public:
   ~Map();
 
   std::shared_ptr<GraphicComponent> GetMapGraphicComponent() const;
+  void AddEntity(std::shared_ptr<Entity>& entity);
+  int GetTilesCount();
 
 private:
   std::vector<std::vector<std::shared_ptr<Turf>>> tiles_;
+  std::vector<std::shared_ptr<Entity>> entities_;
   std::shared_ptr<GraphicComponent> map_graphic_component_;
 };

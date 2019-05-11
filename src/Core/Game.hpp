@@ -57,6 +57,8 @@ class Game {
   std::shared_ptr<GraphicComponent> map_graphic_component_;
   std::vector<Entity> entities_;
 
+  int chosen_unit_;
+
   sf::Font font_;
   sf::Text scale_percent_text_;
 };

@@ -14,7 +14,7 @@ TEST(Stress_Tests, Map_test_1) {
 
   auto end = std::chrono::steady_clock::now;
 
-  EXPECT_LE(chrono::duration_cast<double>(end - start).count(), 10);
+  EXPECT_LE(std::chrono::duration_cast<double>(end - start).count(), 10);
 }
 
 TEST(Stress_Tests, Map_test_2) {
@@ -24,7 +24,7 @@ TEST(Stress_Tests, Map_test_2) {
 
   auto end = std::chrono::steady_clock::now;
 
-  EXPECT_LE(chrono::duration_cast<double>(end - start).count(), 10);
+  EXPECT_LE(std::chrono::duration_cast<double>(end - start).count(), 10);
 }
 
 TEST(Stress_Tests, Map_test_3) {
@@ -34,7 +34,7 @@ TEST(Stress_Tests, Map_test_3) {
 
   auto end = std::chrono::steady_clock::now;
 
-  EXPECT_LE(chrono::duration_cast<double>(end - start).count(), 10);
+  EXPECT_LE(std::chrono::duration_cast<double>(end - start).count(), 10);
 }
 
 TEST(Stress_Tests, Map_test_4) {
@@ -44,5 +44,5 @@ TEST(Stress_Tests, Map_test_4) {
 
   auto end = std::chrono::steady_clock::now;
 
-  EXPECT_LE(chrono::duration_cast<double>(end - start).count(), 100);
+  EXPECT_LE(std::chrono::duration_cast<double>(end - start).count(), 100);
 }

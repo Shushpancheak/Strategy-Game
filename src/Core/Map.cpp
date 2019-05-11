@@ -31,3 +31,11 @@ Map::~Map() = default;
 std::shared_ptr<GraphicComponent> Map::GetMapGraphicComponent() const {
   return map_graphic_component_;
 }
+
+void Map::AddEntity(std::shared_ptr<Entity>& entity) {
+  entities_.push_back(entity);
+}
+
+int Map::GetTilesCount() {
+  return tiles_.size() * tiles_[0].size();
+}

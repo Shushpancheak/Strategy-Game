@@ -23,7 +23,8 @@ Game::Game()
   , windowed_(false)
   , screen_(std::make_shared<GraphicComponent>(window_, nullptr, sf::Texture(), 1))
   , map_(nullptr)
-  , entities_(0) {
+  , entities_(0)
+  , chosen_unit_(0) {
   map_ = std::make_shared<Map>(
     screen_,
     window_
@@ -126,7 +127,7 @@ sf::Vector2<float> Game::GetMapMoveByKeyboard() const {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
     res += {-constants::kMapMovePerFrame, 0};
   }
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H)) {
     res += {0, constants::kMapMovePerFrame};
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
@@ -182,6 +183,12 @@ void Game::HandleKeyPressed(const sf::Event& event) {
     window_->close();
     return;
   }
+  if (event.key.code == sf::Keyboard::Key::Q) {
+    chosen_unit_ = 0;
+  }
+  if (event.key.code == sf::Keyboard::Key::W) {
+    chosen_unit_ = 1;
+  }
   if (event.key.code == sf::Keyboard::Key::Enter &&
       sf::Keyboard::isKeyPressed(sf::Keyboard::RAlt) ||
       event.key.code == sf::Keyboard::Key::RAlt &&
@@ -197,7 +204,36 @@ void Game::HandleKeyPressed(const sf::Event& event) {
 }
 
 void Game::HandleMouseClicked(const sf::Event& event) {
-  
+  auto mouse_pos = sf::Mouse::getPosition();
+  const auto window_position = window_->getPosition() +
+     (windowed_ ? constants::kMouseBorderError : sf::Vector2<int>(0, 0));
+
+  mouse_pos -= window_position;
+
+  std::shared_ptr<Entity> unit = std::make_shared<Entity>(mouse_pos.x, mouse_pos.y);
+
+  if (chosen_unit_ == 0) {
+    unit->GetComponents().push_back(
+    std::make_shared<GraphicComponent>(
+      window_,
+      map_graphic_component_,
+      ResourceManager::GetInstance()->GetTexture("tankb")
+      )
+    );
+  } else {
+    unit->GetComponents().push_back(
+    std::make_shared<GraphicComponent>(
+      window_,
+      map_graphic_component_,
+      ResourceManager::GetInstance()->GetTexture("tankr")
+      )
+    );
+  }
+
+  std::dynamic_pointer_cast<GraphicComponent>
+  (unit->GetComponents()[0])->SetXy(mouse_pos.x, mouse_pos.y);
+
+  map_->AddEntity(unit);
 }
 
 void Game::DrawInfo() {

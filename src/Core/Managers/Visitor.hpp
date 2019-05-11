@@ -1,5 +1,8 @@
 #pragma once
 #include "Entity/Entity.hpp"
+#include "Entity/Turf.hpp"
+#include "Entity//Mob.hpp"
+#include "Map.hpp"
 
 class Visitor {
 public:

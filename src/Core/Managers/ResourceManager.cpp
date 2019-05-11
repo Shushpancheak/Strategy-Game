@@ -44,7 +44,8 @@ std::unordered_map<std::string, sf::Texture> ResourceManager::LoadTextures() {
     return s.substr(start, finish - start + 1);
   };
 
-  for (auto& name : constants::kTexturesPaths) {
+  for (size_t i = 0;  i< 3; ++i) {
+    std::string name=  constants::kTexturesPaths[i];
     std::cout << name << std::endl;
 
     sf::Texture new_tex;
