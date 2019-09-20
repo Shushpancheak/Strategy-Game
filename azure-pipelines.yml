@@ -1,0 +1,38 @@
+# Email notification configured in Azure Pipelines settings.
+# using folowing guide: https://docs.microsoft.com/en-us/azure/devops/notifications/howto-manage-team-notifications?view=azure-devops&tabs=new-nav&viewFallbackFrom=vsts
+
+trigger:
+  branches:
+    include:
+    - dev
+    - master
+
+  paths:
+    exclude:
+    - README.md
+    - docs/*
+
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+container:
+  image: ubuntu:19.10
+  options: "--name ci-container -v /usr/bin/docker:/tmp/docker:ro"
+
+steps:
+- script: |
+    /tmp/docker exec -t -u 0 ci-container \
+    sh -c "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confold" -y install sudo"
+  displayName: Set up sudo
+
+- script: |
+    sudo apt-get install -y cmake
+    sudo apt-get install -y make
+    sudo apt-get install -y gcc
+    sudo apt-get install -y g++
+    sudo apt-get install -y libsfml-dev
+    mkdir build
+    cd build
+    cmake ..
+    make
