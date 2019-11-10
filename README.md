@@ -1,7 +1,6 @@
-# Strategy-Game
-A Programming Technology Project. Uses SFML. The main aim is to implement different programming patterns.
+The main aim is to implement various programming design patterns.
 
-## How to build
+## Building
 This game uses [SFML](https://www.sfml-dev.org/tutorials/2.5/). So you should download it and somehow link the project to a library. Of course, you also should have cmake of the latest version installed.
 ### Linux:
 ```bash
